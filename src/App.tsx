@@ -1,23 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./styles/index.scss";
+import Button, { ButtonType, ButtonSize } from "./components/Button/button";
+import Menu from "./components/Menu/menu";
+import MenuItem from "./components/Menu/menuItem";
+import SubMenu from "./components/Menu/subMenu";
+import Tab from './components/Tab/tab'
+import TabsItem from './components/Tab/tabItem'
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+        <Tab mode="nav-card">
+          <TabsItem index={1}>test1</TabsItem>
+          <TabsItem index={2}>test2</TabsItem>
+        </Tab>
+        <Menu
+          mode = "vertical"
+          defaultIndex={'0'}
+          onSelect={(index) => {
+            alert(index);
+          }}
         >
-          Learn React
-        </a>
+          <MenuItem>item 1</MenuItem>
+          <MenuItem>item 2</MenuItem>
+          <MenuItem>item 3</MenuItem>
+          <SubMenu title="dropdown">
+            <MenuItem>item 1</MenuItem>
+            <MenuItem>item 2</MenuItem>
+          </SubMenu>
+        </Menu>
+        <Button> Hello </Button>
+        <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>
+          {" "}
+          Hello 2{" "}
+        </Button>
+        <Button btnType={ButtonType.Link} href="https://www.google.com">
+          {" "}
+          Google 3{" "}
+        </Button>
       </header>
     </div>
   );
