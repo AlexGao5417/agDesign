@@ -7,6 +7,10 @@ import SubMenu from "./components/Menu/subMenu";
 import Tab from './components/Tab/tab'
 import TabsItem from './components/Tab/tabItem'
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+
+library.add(fas)
 function App() {
   return (
     <div className="App">
@@ -16,7 +20,6 @@ function App() {
           <TabsItem index={2}>test2</TabsItem>
         </Tab>
         <Menu
-          mode = "vertical"
           defaultIndex={'0'}
           onSelect={(index) => {
             alert(index);
@@ -31,11 +34,11 @@ function App() {
           </SubMenu>
         </Menu>
         <Button> Hello </Button>
-        <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>
+        <Button btnType='primary' size='lg'>
           {" "}
           Hello 2{" "}
         </Button>
-        <Button btnType={ButtonType.Link} href="https://www.google.com">
+        <Button btnType='link' href="https://www.google.com">
           {" "}
           Google 3{" "}
         </Button>
