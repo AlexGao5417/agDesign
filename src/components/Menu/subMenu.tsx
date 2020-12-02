@@ -3,7 +3,6 @@ import classNames from "classnames";
 import { MenuContext } from "./menu";
 import { MenuItemProps } from "./menuItem";
 import Icon from "../Icon/icon";
-import { CSSTransition } from "react-transition-group";
 import Transition from '../Transistion/transition'
 
 export interface SubMenuProps {
@@ -25,6 +24,8 @@ const SubMenu: React.FC<SubMenuProps> = ({
   const [menuOpen, setOpen] = useState(isOpen);
   const classes = classNames("menu-item submenu-item", className, {
     "is-active": context.index === index,
+    'is-opened': menuOpen,
+    'is-vertical': context.mode === 'vertical'
   });
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -58,12 +59,10 @@ const SubMenu: React.FC<SubMenuProps> = ({
   const renderChildren = () => {
     const subMenuClasses = classNames("submenu", {
       "menu-opened": menuOpen,
-    });
-    const childrenComponent = React.Children.map(
-      children,
-      (child, sub_index) => {
+    });    
+    const childrenComponent = React.Children.map(children, (child, sub_index) => {
         const childElement = child as FunctionComponentElement<MenuItemProps>;
-        if (childElement.type.displayName === "MenuItem") {
+        if (childElement.type.displayName === "MenuItem") {          
           return React.cloneElement(childElement, {
             index: `${index}-${sub_index}`,
           });

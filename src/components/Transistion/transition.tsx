@@ -13,7 +13,9 @@ type TransitionProps = CSSTransitionProps & {
   wrapper?: boolean;
 };
 
-const Transition: React.FC<TransitionProps> = (props) => {
+const Transition: React.FC<TransitionProps> = (props) => {  
+  console.log(props);
+  
   const { children, classNames, animation, wrapper, ...restProps } = props;
 
   return (
@@ -21,12 +23,12 @@ const Transition: React.FC<TransitionProps> = (props) => {
       classNames={classNames ? classNames : animation}
       {...restProps}
     >
-    /**
+    {/* 
         create another div element, since transistion property cannot be inherited
         have another div element can make sure that both of them won't be overlap by
         the other     
-     */
-      { wrapper ? <div>children</div>: children}
+    */}
+      {wrapper ? <div>{children}</div> : children}
     </CSSTransition>
   );
 };
